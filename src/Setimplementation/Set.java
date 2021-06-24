@@ -26,4 +26,10 @@ public interface Set<T extends Comparable> {
      */
     boolean Contains(T value);
 
+    /**
+     * Cast the given set to an array
+     * @return the array of size size
+     */
+    Object[] toArray();
+
 }

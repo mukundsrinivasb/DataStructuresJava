@@ -1,4 +1,5 @@
 package Setimplementation;
+
 import java.util.LinkedList;
 
 public class HashMaps<T extends Comparable> implements Set<T> {
@@ -16,23 +17,40 @@ public class HashMaps<T extends Comparable> implements Set<T> {
 
     @Override
     public boolean add(T value) {
-        return false;
-
+        LinkedList<T> thisList = getElement(value);
+        if (!thisList.isEmpty()) {
+            if (thisList.contains(value)) {
+                return false;
+            }
+        }
+        thisList.add(value);
+        size++;
+        return true;
     }
 
     @Override
     public boolean Contains(T value) {
+        LinkedList<T> thisList = getElement(value);
+        for (T element : thisList) {
+            if (element.equals(value)) {
+                return true;
+            }
+        }
         return false;
     }
 
     @Override
     public void remove(T value) {
-
+        LinkedList<T> thisList = getElement(value);
+        if (Contains(value)) {
+            thisList.remove(value);
+            size--;
+        }
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     LinkedList<T> getElement(T element) {
@@ -44,5 +62,19 @@ public class HashMaps<T extends Comparable> implements Set<T> {
             refBucket = table[bucket];
         }
         return refBucket;
+    }
+
+    @Override
+    public Object[] toArray() {
+        Object[] retArray = new Object[size];
+        int c = 0;
+        for (LinkedList<T> temp : table) {
+            for (T val : temp) {
+                retArray[c] = val;
+                c++;
+            }
+        }
+        return retArray;
+
     }
 }
