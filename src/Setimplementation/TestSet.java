@@ -3,6 +3,7 @@ package Setimplementation;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -79,18 +80,21 @@ public abstract class TestSet {
 
     @Test
     void toArrayOneElementTest() {
-        HashMaps<Integer> set = createSet();
-        set.add(21);
-        Integer[] chk = {21};
-        Integer[] setArr = (Integer[]) set.toArray();
-        assertArrayEquals(setArr, chk);
+        HashMaps<String> set = createSet();
+        set.add("One");
     }
 
     @Test
     void toArrayNoneElementTest() {
-        HashMaps<Integer> set = createSet();
 
     }
 
+    @Test
+    void toArrayManyElementsTest() {
 
+    }
+
+    void checkArray(HashMaps<String> set, String[] chkArr) {
+
+    }
 }

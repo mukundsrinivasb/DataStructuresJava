@@ -69,12 +69,12 @@ public class HashMaps<T extends Comparable> implements Set<T> {
         Object[] retArray = new Object[size];
         int c = 0;
         for (LinkedList<T> temp : table) {
-            for (T val : temp) {
-                retArray[c] = val;
-                c++;
+            if (temp != null) {
+                for (T val : temp) {
+                    retArray[c++] = val;
+                }
             }
         }
         return retArray;
-
     }
 }
