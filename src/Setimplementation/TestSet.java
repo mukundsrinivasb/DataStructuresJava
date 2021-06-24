@@ -82,19 +82,33 @@ public abstract class TestSet {
     void toArrayOneElementTest() {
         HashMaps<String> set = createSet();
         set.add("One");
+        String[] chkArr = {"One"};
+        assertTrue(checkArray(set, chkArr));
     }
 
     @Test
     void toArrayNoneElementTest() {
-
+        HashMaps<String> set = createSet();
+        String[] chArr = new String[0];
+        assertTrue(checkArray(set, chArr));
     }
 
     @Test
     void toArrayManyElementsTest() {
-
+        HashMaps<String> set = createSet();
+        set.add("Never");
+        set.add("Wanna");
+        set.add("Give");
+        set.add("you");
+        set.add("up");
+        String[] chkArr = {"Never", "Wanna", "Give", "you", "up"};
+        assertTrue(checkArray(set, chkArr));
     }
 
-    void checkArray(HashMaps<String> set, String[] chkArr) {
-
+    boolean checkArray(HashMaps<String> set, String[] chkArr) {
+        var setArr = set.toArray();
+        Arrays.sort(setArr);
+        Arrays.sort(chkArr);
+        return Arrays.equals(setArr, chkArr);
     }
 }
