@@ -1,5 +1,6 @@
-package ListImplementation;
+package ListImplementationTest;
 
+import ListImplementation.List;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

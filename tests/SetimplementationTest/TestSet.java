@@ -1,5 +1,6 @@
-package Setimplementation;
+package SetimplementationTest;
 
+import Setimplementation.HashMaps;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
