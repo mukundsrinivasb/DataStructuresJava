@@ -1,6 +1,5 @@
 package QueueImplementation;
 
-import ListImplementation.List;
 
 public class Queue<T> implements fifo<T> {
     QueueNode start;
@@ -15,37 +14,45 @@ public class Queue<T> implements fifo<T> {
             nextPtr = nextP;
         }
 
-        int sizeRecursive(QueueNode n) {
-            if (n == null) {
-                return 0;
-            } else {
-                if (n.nextPtr == end) {
-                    return 1;
-                }
-                return 1 + sizeRecursive(n.nextPtr);
-            }
-
+        int sizeRecursive(QueueNode n){
+           if(n==end)
+               return 1;
+           return 1+sizeRecursive(n.nextPtr);
         }
     }
 
+
     @Override
     public void add(T val) {
-        QueueNode nQ = new QueueNode(val, null);
+        QueueNode addNode = new QueueNode(val, null);
         if (start == null) {
-            start = nQ;
+            start = addNode;
             end = start;
         }
-        end = nQ;
-        end.nextPtr = end;
+        end.nextPtr = addNode;
+        end = end.nextPtr;
+
     }
 
     @Override
     public boolean remove() {
-        return false;
+        return true;
     }
 
     @Override
     public int size() {
-        return start.sizeRecursive(start);
+        try{
+            return start.sizeRecursive(start);
+        }catch (NullPointerException e){
+            return 0;
+        }
+    }
+
+    @Override
+    public T get() {
+        if(start != null) {
+            return start.value;
+        }
+        throw new NullPointerException("There is nothing to get");
     }
 }

@@ -20,4 +20,10 @@ public interface fifo<T> {
      * @return
      */
     int size();
+
+    /**
+     * get the first value in the queue
+     * @return get the value in the node
+     */
+    T get();
 }
