@@ -14,7 +14,6 @@ public abstract class TestSet {
 
 
     @Test
-    @DisplayName("😱")
      void addNothingTest() {
         Set<Integer> set = createSet();
         assertEquals(0, set.size());
@@ -32,7 +31,28 @@ public abstract class TestSet {
         Set<Integer> set = createSet();
         set.add(25);
         set.add(43);
-        assertEquals(2, set.size());
+        set.add(90);
+        set.add(92);
+        assertEquals(4, set.size());
+    }
+
+    @Test
+    @DisplayName("Gotta pass this one 😱")
+    void addCopies(){
+        Set<Integer> set = createSet();
+        set.add(25);
+        assertEquals(1,set.size());
+        assertFalse(set.add(25));
+        set.add(14);
+        assertEquals(2,set.size());
+        assertFalse(set.add(14));
+        set.add(67);
+        assertEquals(3,set.size());
+        assertFalse(set.add(67));
+        set.add(92);
+        assertEquals(4,set.size());
+        assertFalse(set.add(92));
+
     }
 
     @Test
