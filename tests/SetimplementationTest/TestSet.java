@@ -1,47 +1,70 @@
 package SetimplementationTest;
 
-import Setimplementation.HashMaps;
+import Setimplementation.Set;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+
 import java.util.Arrays;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class TestSet {
-    public abstract <T extends Comparable<T>> HashMaps<T> createSet();
+    public abstract <T extends Comparable<T>> Set<T> createSet();
+
 
     @Test
-    void addNothingTest() {
-        HashMaps<Integer> set = createSet();
+     void addNothingTest() {
+        Set<Integer> set = createSet();
         assertEquals(0, set.size());
     }
 
     @Test
     void addOneTest() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         set.add(1);
         assertEquals(1, set.size());
     }
 
     @Test
     void addManyTests() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         set.add(25);
         set.add(43);
-        assertEquals(2, set.size());
+        set.add(90);
+        set.add(92);
+        assertEquals(4, set.size());
+    }
+
+    @Test
+    @DisplayName("Gotta pass this one 😱")
+    void addCopies(){
+        Set<Integer> set = createSet();
+        set.add(25);
+        assertEquals(1,set.size());
+        assertFalse(set.add(25));
+        set.add(14);
+        assertEquals(2,set.size());
+        assertFalse(set.add(14));
+        set.add(67);
+        assertEquals(3,set.size());
+        assertFalse(set.add(67));
+        set.add(92);
+        assertEquals(4,set.size());
+        assertFalse(set.add(92));
+
     }
 
     @Test
     void addDuplicate() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         assertTrue(set.add(1));
         assertFalse(set.add(1));
     }
 
     @Test
     void containsTest() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         assertFalse(set.Contains(1));
         set.add(1);
         assertTrue(set.Contains(1));
@@ -49,7 +72,7 @@ public abstract class TestSet {
 
     @Test
     void containsManyTest() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         set.add(2);
         set.add(40);
         set.add(20);
@@ -59,7 +82,7 @@ public abstract class TestSet {
 
     @Test
     void removeFromOneTest() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         set.add(2);
         set.remove(2);
         set.remove(1);
@@ -68,7 +91,7 @@ public abstract class TestSet {
 
     @Test
     void removeFromManyTest() {
-        HashMaps<Integer> set = createSet();
+        Set<Integer> set = createSet();
         for (int i = 0; i < 50; i++) {
             set.add(i);
         }
@@ -81,7 +104,7 @@ public abstract class TestSet {
 
     @Test
     void toArrayOneElementTest() {
-        HashMaps<String> set = createSet();
+        Set<String> set = createSet();
         set.add("One");
         String[] chkArr = {"One"};
         assertTrue(checkArray(set, chkArr));
@@ -89,14 +112,14 @@ public abstract class TestSet {
 
     @Test
     void toArrayNoneElementTest() {
-        HashMaps<String> set = createSet();
+        Set<String> set = createSet();
         String[] chArr = new String[0];
         assertTrue(checkArray(set, chArr));
     }
 
     @Test
     void toArrayManyElementsTest() {
-        HashMaps<String> set = createSet();
+        Set<String> set = createSet();
         set.add("Never");
         set.add("Wanna");
         set.add("Give");
@@ -106,7 +129,8 @@ public abstract class TestSet {
         assertTrue(checkArray(set, chkArr));
     }
 
-    boolean checkArray(HashMaps<String> set, String[] chkArr) {
+
+    boolean checkArray(Set<String> set, String[] chkArr) {
         var setArr = set.toArray();
         Arrays.sort(setArr);
         Arrays.sort(chkArr);

@@ -15,7 +15,6 @@ public class QueTest {
         assertEquals(0, queue.size());
         assertThrows(NullPointerException.class, queue::get);
     }
-
     @Test
     void addOneTest() {
         Queue<Integer> queue = new Queue<>();
@@ -61,6 +60,5 @@ public class QueTest {
         assertEquals(1, queue.size());
         assertEquals("India", queue.get());
     }
-
 
 }
