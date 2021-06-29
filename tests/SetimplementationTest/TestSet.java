@@ -87,6 +87,7 @@ public abstract class TestSet {
         assertEquals(0, set.size());
     }
 
+    //The remove method does not delete the value in the set
     @Test
     void removeFromManyTest() {
         Set<Integer> set = createSet();
