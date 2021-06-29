@@ -1,5 +1,8 @@
 package Setimplementation;
 
+import java.util.Random;
+import java.util.stream.IntStream;
+
 public class BSTSet<T extends Comparable> implements Set<T> {
     class BSTree {
         T value;
@@ -18,11 +21,11 @@ public class BSTSet<T extends Comparable> implements Set<T> {
                 if (addTree.left == null) {
                     addTree.left = newTree;
                 } else {
-                     addNodeRecursive(addTree.left, addN);
+                    addNodeRecursive(addTree.left, addN);
                 }
             } else if (compare > 0) {
                 if (addTree.right == null) {
-                    addTree.right=newTree;
+                    addTree.right = newTree;
                 } else {
                     addNodeRecursive(addTree.right, addN);
                 }
@@ -31,31 +34,58 @@ public class BSTSet<T extends Comparable> implements Set<T> {
             }
         }
 
+        BSTree removeRecursive(BSTree tNode, T rVal) {
+            BSTree retNode = null;
+            int compare = rVal.compareTo(tNode.value);
+            if (compare > 0) {
+                if (tNode.right != null) {
+                    return removeRecursive(tNode.right, rVal);
+                } else {
+                    throw new NullPointerException();
+                }
+            } else if (compare < 0) {
+                if (tNode.left != null) {
+                    return removeRecursive(tNode.left, rVal);
+                } else {
+                    throw new NullPointerException();
+                }
+            } else {
+
+                tNode = null;
+                return retNode;
+            }
+        }
+
+
     }
 
     BSTree start;
-    public int size=0;
+    public int size = 0;
 
     @Override
     public boolean add(T value) {
-        BSTree newStart = new BSTree(value,null,null);
+        BSTree newStart = new BSTree(value, null, null);
         try {
             if (start == null) {
                 start = newStart;
             } else {
-                start.addNodeRecursive(start,value);
+                start.addNodeRecursive(start, value);
             }
             size++;
             return true;
-        }
-        catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
     @Override
-    public void remove(T value) {
-
+    public void remove(T rVal) {
+        try{
+        start.removeRecursive(start, rVal);
+        size--;}
+        catch (NullPointerException e){
+            throw new NullPointerException();
+        }
     }
 
     @Override
@@ -72,4 +102,5 @@ public class BSTSet<T extends Comparable> implements Set<T> {
     public Object[] toArray() {
         return new Object[0];
     }
+
 }
