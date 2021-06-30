@@ -1,8 +1,5 @@
 package Setimplementation;
 
-import java.util.Random;
-import java.util.stream.IntStream;
-
 public class BSTSet<T extends Comparable> implements Set<T> {
     class BSTree {
         T value;
@@ -13,6 +10,12 @@ public class BSTSet<T extends Comparable> implements Set<T> {
             left = l;
             right = r;
         }
+
+        void setNull() {
+            this.left = this.right = null;
+            this.value = null;
+        }
+
 
         void addNodeRecursive(BSTree addTree, T addN) {
             BSTree newTree = new BSTree(addN, null, null);
@@ -35,7 +38,7 @@ public class BSTSet<T extends Comparable> implements Set<T> {
         }
 
         BSTree removeRecursive(BSTree tNode, T rVal) {
-            BSTree retNode = null;
+            BSTree retNode = tNode;
             int compare = rVal.compareTo(tNode.value);
             if (compare > 0) {
                 if (tNode.right != null) {
@@ -50,9 +53,9 @@ public class BSTSet<T extends Comparable> implements Set<T> {
                     throw new NullPointerException();
                 }
             } else {
-
-                tNode = null;
-                return retNode;
+                tNode.setNull();
+                addNodeRecursive(start,);
+                return tNode;
             }
         }
 
@@ -80,10 +83,10 @@ public class BSTSet<T extends Comparable> implements Set<T> {
 
     @Override
     public void remove(T rVal) {
-        try{
-        start.removeRecursive(start, rVal);
-        size--;}
-        catch (NullPointerException e){
+        try {
+            start.removeRecursive(start, rVal);
+            size--;
+        } catch (NullPointerException e) {
             throw new NullPointerException();
         }
     }
