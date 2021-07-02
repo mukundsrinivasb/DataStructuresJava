@@ -83,7 +83,6 @@ public abstract class TestSet {
         Set<Integer> set = createSet();
         set.add(2);
         set.remove(2);
-        set.remove(1);
         assertEquals(0, set.size());
     }
 
@@ -98,11 +97,10 @@ public abstract class TestSet {
         set.add(89);
         set.add(8);
         set.add(1);
-        assertThrows(NullPointerException.class, () -> {
-            set.remove(2);
-        });
         set.remove(89);
         assertEquals(6, set.size());
+        set.remove(20);
+        assertEquals(5,set.size());
 
 
     }

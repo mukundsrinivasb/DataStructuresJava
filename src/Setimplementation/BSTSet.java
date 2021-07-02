@@ -1,94 +1,119 @@
 package Setimplementation;
 
 public class BSTSet<T extends Comparable> implements Set<T> {
+
+
     class BSTree {
         T value;
         BSTree left, right;
 
-        BSTree(T val, BSTree l, BSTree r) {
+        BSTree(T val) {
             value = val;
-            left = l;
-            right = r;
         }
 
-        void setNull() {
-            this.left = this.right = null;
-            this.value = null;
+        /**
+         * Add a subtree to the appropriate node
+         *
+         * @param subtree which needs to be added
+         * @return true if added false otherwise
+         */
+
+        boolean addTree(BSTree subtree) {
+            int comp = subtree.value.compareTo(value);
+            if (subtree == null)
+                return false;
+            if (comp > 0) {
+                if (right != null)
+                    return right.addTree(subtree);
+                else {
+                    right = subtree;
+                    return true;
+                }
+            } else if (comp < 0) {
+                if (left != null)
+                    return left.addTree(subtree);
+                else {
+                    left = subtree;
+                    return true;
+                }
+
+            } else
+                return false;
         }
 
 
-        void addNodeRecursive(BSTree addTree, T addN) {
-            BSTree newTree = new BSTree(addN, null, null);
-            int compare = addN.compareTo(addTree.value);
-            if (compare < 0) {
-                if (addTree.left == null) {
-                    addTree.left = newTree;
+        /**
+         * To find and remove a node from a tree
+         *
+         * @param element find the element
+         * @param remove  true if the element has to be removed else false
+         * @return the node
+         */
+
+        BSTree Find(BSTree element, boolean remove) {
+            int comp = element.value.compareTo(value);
+            if (comp == 0)
+                return this;
+            else {
+                if (comp < 0) {
+                    if (left != null) {
+                        BSTree found = left.Find(element, remove);
+                        if (found == left && remove)
+                            left = null;
+                        return found;
+                    } else
+                        return null;
                 } else {
-                    addNodeRecursive(addTree.left, addN);
+                    if (right != null) {
+                        BSTree found = right.Find(element, remove);
+                        if (found == right && remove)
+                            right = null;
+                        return found;
+                    } else
+                        return null;
                 }
-            } else if (compare > 0) {
-                if (addTree.right == null) {
-                    addTree.right = newTree;
-                } else {
-                    addNodeRecursive(addTree.right, addN);
-                }
-            } else {
-                throw new IllegalArgumentException("The node that is to be added cannot be in the tree");
             }
+
         }
-
-        BSTree removeRecursive(BSTree tNode, T rVal) {
-            BSTree retNode = tNode;
-            int compare = rVal.compareTo(tNode.value);
-            if (compare > 0) {
-                if (tNode.right != null) {
-                    return removeRecursive(tNode.right, rVal);
-                } else {
-                    throw new NullPointerException();
-                }
-            } else if (compare < 0) {
-                if (tNode.left != null) {
-                    return removeRecursive(tNode.left, rVal);
-                } else {
-                    throw new NullPointerException();
-                }
-            } else {
-                tNode.setNull();
-                addNodeRecursive(start,);
-                return tNode;
-            }
-        }
-
-
     }
 
-    BSTree start;
+
+    BSTree root;
     public int size = 0;
 
     @Override
     public boolean add(T value) {
-        BSTree newStart = new BSTree(value, null, null);
-        try {
-            if (start == null) {
-                start = newStart;
-            } else {
-                start.addNodeRecursive(start, value);
-            }
+        BSTree addEle = new BSTree(value);
+        if (root == null) {
+            root = addEle;
             size++;
             return true;
-        } catch (IllegalArgumentException e) {
-            return false;
+        } else {
+            boolean added = root.addTree(addEle);
+            if (added)
+                size++;
+            return added;
         }
     }
 
     @Override
-    public void remove(T rVal) {
-        try {
-            start.removeRecursive(start, rVal);
+    public void remove(T value) {
+        BSTree ele = new BSTree(value);
+        BSTree found = root.Find(ele, true);
+        if (found == root)
             size--;
-        } catch (NullPointerException e) {
-            throw new NullPointerException();
+        if (found != null) {
+            if (found.right != null) {
+                root.addTree(found.right);
+                size--;
+            }
+            if (found.left != null) {
+                root.addTree(found.left);
+                size--;
+
+            }
         }
+
     }
 
     @Override
