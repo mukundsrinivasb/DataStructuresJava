@@ -149,7 +149,7 @@ public class BSTSet<T extends Comparable> implements Set<T> {
 
     @Override
     public Object[] toArray() {
-        List<T> elements = new ArrayList<T>();
+        List<T> elements = new ArrayList<>();
         if (root != null)
             root.addElements(elements);
         return elements.toArray();
