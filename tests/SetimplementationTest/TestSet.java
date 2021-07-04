@@ -99,7 +99,8 @@ public abstract class TestSet {
         assertEquals(6, set.size());
         set.remove(20);
         assertEquals(5,set.size());
-
+        set.remove(10);
+        assertEquals(5,set.size());
 
     }
 

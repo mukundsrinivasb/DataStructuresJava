@@ -1,5 +1,8 @@
 package Setimplementation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BSTSet<T extends Comparable> implements Set<T> {
 
 
@@ -75,6 +78,16 @@ public class BSTSet<T extends Comparable> implements Set<T> {
             }
 
         }
+
+        void addElements(List<T> elements) {
+            if (left != null) {
+                left.addElements(elements);
+            }
+            if (right != null) {
+                right.addElements(elements);
+            }
+            elements.add(value);
+        }
     }
 
 
@@ -100,20 +113,25 @@ public class BSTSet<T extends Comparable> implements Set<T> {
     public void remove(T value) {
         BSTree ele = new BSTree(value);
         BSTree found = root.Find(ele, true);
-        if (found == root)
-            size--;
         if (found != null) {
-            if (found.right != null) {
-                root.addTree(found.right);
-                size--;
-            }
-            if (found.left != null) {
-                root.addTree(found.left);
-                size--;
+            if (found.equals(root)) {
+                if (found.left != null) {
+                    root = found.left;
+                    root.addTree(found.right);
+                } else if (found.right != null) {
+                    root = found.right;
+                } else {
+                    root = null;
+                }
+            } else {
+                if (found.left != null)
+                    root.addTree(found.left);
+                if (found.right != null)
+                    root.addTree(found.right);
 
             }
+            size--;
         }
-
     }
 
     @Override
@@ -123,12 +141,17 @@ public class BSTSet<T extends Comparable> implements Set<T> {
 
     @Override
     public boolean Contains(T value) {
-        return false;
+        BSTree findNode = new BSTree(value);
+        if (root == null)
+            return false;
+        else return root.Find(findNode, false) != null;
     }
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        List<T> elements = new ArrayList<T>();
+        if (root != null)
+            root.addElements(elements);
+        return elements.toArray();
     }
-
 }
