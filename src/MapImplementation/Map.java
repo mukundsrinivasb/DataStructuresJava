@@ -1,4 +1,4 @@
-package Map;
+package MapImplementation;
 
 public interface Map<K extends Comparable <? super K>,V> {
     /**
