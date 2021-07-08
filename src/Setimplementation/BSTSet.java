@@ -47,7 +47,6 @@ public class BSTSet<T extends Comparable> implements Set<T> {
 
         /**
          * To find and remove a node from a tree
-         *
          * @param element find the element
          * @param remove  true if the element has to be removed else false
          * @return the node

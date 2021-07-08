@@ -6,6 +6,7 @@ public interface Map<K extends Comparable <? super K>,V> {
      * @param key represents the associated identifier
      * @param value represents the actual element
      * @return null if K is not present , else the value if already present, update value
+     * @throws NullPointerException if the Val is null
      */
     V put(K key,V value);
 
