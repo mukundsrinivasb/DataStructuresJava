@@ -1,11 +1,13 @@
 package SetimplementationTest;
 
 import Setimplementation.Set;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 
 import java.util.Arrays;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +16,7 @@ public abstract class TestSet {
 
 
     @Test
-     void addNothingTest() {
+    void addNothingTest() {
         Set<Integer> set = createSet();
         assertEquals(0, set.size());
     }
@@ -38,29 +40,23 @@ public abstract class TestSet {
 
     @Test
     @DisplayName("Gotta pass this one 😱")
-    void addCopies(){
+    void addCopies() {
         Set<Integer> set = createSet();
         set.add(25);
-        assertEquals(1,set.size());
+        assertEquals(1, set.size());
         assertFalse(set.add(25));
         set.add(14);
-        assertEquals(2,set.size());
+        assertEquals(2, set.size());
         assertFalse(set.add(14));
         set.add(67);
-        assertEquals(3,set.size());
+        assertEquals(3, set.size());
         assertFalse(set.add(67));
         set.add(92);
-        assertEquals(4,set.size());
+        assertEquals(4, set.size());
         assertFalse(set.add(92));
 
     }
 
-    @Test
-    void addDuplicate() {
-        Set<Integer> set = createSet();
-        assertTrue(set.add(1));
-        assertFalse(set.add(1));
-    }
 
     @Test
     void containsTest() {
@@ -85,21 +81,27 @@ public abstract class TestSet {
         Set<Integer> set = createSet();
         set.add(2);
         set.remove(2);
-        set.remove(1);
         assertEquals(0, set.size());
     }
 
+    //The remove method does not delete the value in the set
     @Test
     void removeFromManyTest() {
         Set<Integer> set = createSet();
-        for (int i = 0; i < 50; i++) {
-            set.add(i);
-        }
-        assertEquals(50, set.size());
-        set.remove(50);
-        assertEquals(50, set.size());
-        set.remove(1);
-        assertEquals(49, set.size());
+        set.add(40);
+        set.add(20);
+        set.add(80);
+        set.add(26);
+        set.add(89);
+        set.add(8);
+        set.add(1);
+        set.remove(89);
+        assertEquals(6, set.size());
+        set.remove(20);
+        assertEquals(5,set.size());
+        set.remove(10);
+        assertEquals(5,set.size());
+
     }
 
     @Test
