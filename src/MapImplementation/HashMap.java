@@ -102,15 +102,10 @@ public class HashMap<K extends Comparable<? super K>, V> implements Map<K, V> {
     public boolean Contains(K key) {
         int hash = key.hashCode();
         int bucket = hash % table.length;
-        if (table[bucket].isEmpty()) {
-        }
-        else {
-            for (int i = 0; i < table[bucket].size(); i++) {
-                if (table[bucket].get(i).compareTo(key) == 0) {
+        if (!table[bucket].isEmpty())
+            for (int i = 0; i < table[bucket].size(); i++)
+                if (table[bucket].get(i).compareTo(key) == 0)
                     return true;
-                }
-            }
-        }
         return false;
     }
 }
