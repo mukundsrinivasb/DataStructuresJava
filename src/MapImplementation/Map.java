@@ -30,10 +30,5 @@ public interface Map<K extends Comparable <? super K>,V> {
      */
     int size();
 
-    /**
-     * Check if a HashMap Contains a Key
-     * @param key check key
-     * @return true if the value is present , false otherwise
-     */
-    boolean Contains(K key);
+
 }

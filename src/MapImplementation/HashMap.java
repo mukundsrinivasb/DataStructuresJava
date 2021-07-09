@@ -46,29 +46,28 @@ public class HashMap<K extends Comparable<? super K>, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
         KVPair nNode = new KVPair(key, value);
-        LinkedList<KVPair> tListBucket = getList(nNode);
-        //if the linked list is empty
-        if (tListBucket.isEmpty()) {
+        LinkedList<KVPair> tListBucket = getList(key);
+        //if key is present
+        if (Contains(key) != -1) {
+            V val = tListBucket.get(Contains(key)).getValue();
+            tListBucket.remove(Contains(key));
             tListBucket.add(nNode);
-            size++;
-            return nNode.getValue();
-        } //if the linked list is not empty
-        for (int i = 0; i < tListBucket.size(); i++) { //Check for values that already have corresponding keys
-            if (tListBucket.get(i).compareTo(key) == 0) {
-                KVPair retNode = tListBucket.get(i);
-                tListBucket.remove(i);
-                tListBucket.add(nNode);
-                return retNode.getValue();
-            }//If the value is not in the list
+            return val;
+        } else {
             tListBucket.add(nNode);
-            return nNode.getValue();
+            return value;
         }
 
     }
 
+
     @Override
     public V get(K key) {
-
+        if(Contains(key) != -1){
+            LinkedList<KVPair> retList = getList(key);
+            retList.get(Contains(key)).getValue();
+        }
+        return null;
     }
 
     @Override
@@ -84,11 +83,11 @@ public class HashMap<K extends Comparable<? super K>, V> implements Map<K, V> {
     /**
      * get the list in which a KVPair might exist
      *
-     * @param fElement Element that has to be found within the map
+     * @param key Element that has to be found within the map
      * @return if present The list of KVPairs in a bucket else an empty list
      */
-    LinkedList<KVPair> getList(KVPair fElement) {
-        int hash = fElement.hashCode();
+    LinkedList<KVPair> getList(K key) {
+        int hash = key.hashCode();
         int bucket = Math.abs(hash) % table.length;
         LinkedList<KVPair> refBucket = table[bucket];
         if (refBucket.isEmpty()) {
@@ -98,14 +97,18 @@ public class HashMap<K extends Comparable<? super K>, V> implements Map<K, V> {
         return refBucket;
     }
 
-    @Override
-    public boolean Contains(K key) {
-        int hash = key.hashCode();
-        int bucket = hash % table.length;
-        if (!table[bucket].isEmpty())
-            for (int i = 0; i < table[bucket].size(); i++)
-                if (table[bucket].get(i).compareTo(key) == 0)
-                    return true;
-        return false;
+    /**
+     * get the index at which a key is present in a liked List
+     * @param key check
+     * @return number of KVPairs from the start node , -1  if absent or null
+     */
+    public int Contains(K key) {
+        KVPair fNode = new KVPair(key, null);
+        LinkedList<KVPair> fList = getList(key);
+        if (!fList.isEmpty())
+            for (int i = 0; i < fList.size(); i++)
+                if (fList.get(i).compareTo(key) == 0)
+                    return i;
+        return -1;
     }
 }
