@@ -108,4 +108,8 @@ public class LinkedList<T> implements List<T> {
             end = oldStart;
         }
     }
+
+    public boolean isEmpty() {
+        return size() == 0;
+    }
 }

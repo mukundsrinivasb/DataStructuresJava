@@ -46,49 +46,29 @@ public class HashMap<K extends Comparable<? super K>, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
         KVPair nNode = new KVPair(key, value);
-        int listAddr = getList(nNode);
-        if (nNode.getValue() != null) {
-            try {
-                for (int i = 0; i < table[listAddr].size(); i++) {
-                    KVPair tElement = table[listAddr].get(i);
-                    if (tElement.compareTo(nNode.getKey()) == 0) {
-                        table[listAddr].remove(i);
-                        table[listAddr].add(nNode);
-                        return tElement.getValue();
-                    }
-
-                }
-                table[listAddr].add(nNode);
-                size++;
-
-            } catch (NullPointerException e) {
-                LinkedList<KVPair> nTable[] = Arrays.copyOf(table, table.length + 1);
-                nTable[listAddr] = new LinkedList<>();
-                nTable[listAddr].add(nNode);
-                table = Arrays.copyOf(nTable, nTable.length);
-                size++;
-                return nNode.getValue();
-            }
-
+        LinkedList<KVPair> tListBucket = getList(nNode);
+        //if the linked list is empty
+        if (tListBucket.isEmpty()) {
+            tListBucket.add(nNode);
+            size++;
+            return nNode.getValue();
+        } //if the linked list is not empty
+        for (int i = 0; i < tListBucket.size(); i++) { //Check for values that already have corresponding keys
+            if (tListBucket.get(i).compareTo(key) == 0) {
+                KVPair retNode = tListBucket.get(i);
+                tListBucket.remove(i);
+                tListBucket.add(nNode);
+                return retNode.getValue();
+            }//If the value is not in the list
+            tListBucket.add(nNode);
             return nNode.getValue();
         }
-        throw new IllegalArgumentException("There is no value to this key");
 
     }
 
     @Override
     public V get(K key) {
-        KVPair cPair = new KVPair(key,null);
-        int hash = cPair.hashCode();
-        int bucket = Math.abs(hash) % table.length;
-        if (table[bucket] != null) {
-            for (int i = 0; i < table[bucket].size(); i++) {
-                if (table[bucket].get(i).compareTo(cPair.getKey()) == 0) {
-                    return table[bucket].get(i).getValue();
-                }
-            }
-        }
-        return null;
+
     }
 
     @Override
@@ -102,14 +82,35 @@ public class HashMap<K extends Comparable<? super K>, V> implements Map<K, V> {
     }
 
     /**
-     * Get the index of the linked List to reference it from another function
+     * get the list in which a KVPair might exist
      *
      * @param fElement Element that has to be found within the map
-     * @return The pointer to table array that should contain the element or else a new element
+     * @return if present The list of KVPairs in a bucket else an empty list
      */
-    int getList(KVPair fElement) {
+    LinkedList<KVPair> getList(KVPair fElement) {
         int hash = fElement.hashCode();
         int bucket = Math.abs(hash) % table.length;
-        return bucket;
+        LinkedList<KVPair> refBucket = table[bucket];
+        if (refBucket.isEmpty()) {
+            table[bucket] = new LinkedList<>();
+            refBucket = table[bucket];
+        }
+        return refBucket;
+    }
+
+    @Override
+    public boolean Contains(K key) {
+        int hash = key.hashCode();
+        int bucket = hash % table.length;
+        if (table[bucket].isEmpty()) {
+        }
+        else {
+            for (int i = 0; i < table[bucket].size(); i++) {
+                if (table[bucket].get(i).compareTo(key) == 0) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
