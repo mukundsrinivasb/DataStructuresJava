@@ -77,6 +77,9 @@ public class PrinterQueue implements SimpleQueue<String> {
     public String poll() {
        String fElement;
        fElement = getInstance().peek();
+       if(fElement==null){
+           return null;
+       }
        getInstance().queue.remove(0);
        return fElement;
     }
