@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="SetimplementationTest.HashMapsTest" time="0.032" tests="11" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="java.specification.version" value="15"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="F:\CompAssignments\DataStructuresJava\target\test-classes;F:\CompAssignments\DataStructuresJava\target\classes;C:\Users\cmaba\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.1\junit-jupiter-api-5.7.1.jar;C:\Users\cmaba\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\cmaba\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\cmaba\.m2\repository\org\junit\platform\junit-platform-commons\1.7.1\junit-platform-commons-1.7.1.jar;C:\Users\cmaba\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.1\junit-jupiter-engine-5.7.1.jar;C:\Users\cmaba\.m2\repository\org\junit\platform\junit-platform-engine\1.7.1\junit-platform-engine-1.7.1.jar;"/>
+    <property name="java.vm.vendor" value="AdoptOpenJDK"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://adoptopenjdk.net/"/>
+    <property name="user.timezone" value="Asia/Calcutta"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="15"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\cmaba\AppData\Local\Temp\surefire15114878266508987323\surefirebooter7545621985855057053.jar C:\Users\cmaba\AppData\Local\Temp\surefire15114878266508987323 2021-07-08T19-35-23_013-jvmRun1 surefire12486099252764341652tmp surefire_09220515464285028754tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="F:\CompAssignments\DataStructuresJava\target\test-classes;F:\CompAssignments\DataStructuresJava\target\classes;C:\Users\cmaba\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.7.1\junit-jupiter-api-5.7.1.jar;C:\Users\cmaba\.m2\repository\org\apiguardian\apiguardian-api\1.1.0\apiguardian-api-1.1.0.jar;C:\Users\cmaba\.m2\repository\org\opentest4j\opentest4j\1.2.0\opentest4j-1.2.0.jar;C:\Users\cmaba\.m2\repository\org\junit\platform\junit-platform-commons\1.7.1\junit-platform-commons-1.7.1.jar;C:\Users\cmaba\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.7.1\junit-jupiter-engine-5.7.1.jar;C:\Users\cmaba\.m2\repository\org\junit\platform\junit-platform-engine\1.7.1\junit-platform-engine-1.7.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\cmaba"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.version.date" value="2021-01-19"/>
+    <property name="java.home" value="C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="F:\CompAssignments\DataStructuresJava"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\cmaba\AppData\Local\Temp\surefire15114878266508987323\surefirebooter7545621985855057053.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="15.0.2+7"/>
+    <property name="user.name" value="cmaba"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="java.vendor.version" value="AdoptOpenJDK"/>
+    <property name="localRepository" value="C:\Users\cmaba\.m2\repository"/>
+    <property name="java.vendor.url.bug" value="https://github.com/AdoptOpenJDK/openjdk-support/issues"/>
+    <property name="java.io.tmpdir" value="C:\Users\cmaba\AppData\Local\Temp\"/>
+    <property name="idea.version" value="2021.1.2"/>
+    <property name="java.version" value="15.0.2"/>
+    <property name="user.dir" value="F:\CompAssignments\DataStructuresJava"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="java.library.path" value="C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\cmaba\AppData\Local\Microsoft\WindowsApps;C:\Users\cmaba\AppData\Local\atom\bin;C:\Program Files\PostgreSQL\13\bin;C:\MinGW\bin;C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot\bin;C:\Program Files\JetBrains\IntelliJ IDEA 2020.3.2\bin;;C:\Users\cmaba\AppData\Local\Programs\MiKTeX\miktex\bin\x64\;C:\Program Files\Git\bin;;C:\Users\cmaba\AppData\Local\Programs\Microsoft VS Code\bin;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="AdoptOpenJDK"/>
+    <property name="java.vm.version" value="15.0.2+7"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="59.0"/>
+  </properties>
+  <testcase name="containsTest" classname="SetimplementationTest.HashMapsTest" time="0"/>
+  <testcase name="toArrayOneElementTest" classname="SetimplementationTest.HashMapsTest" time="0"/>
+  <testcase name="addNothingTest" classname="SetimplementationTest.HashMapsTest" time="0.001"/>
+  <testcase name="addCopies" classname="SetimplementationTest.HashMapsTest" time="0.002"/>
+  <testcase name="toArrayNoneElementTest" classname="SetimplementationTest.HashMapsTest" time="0.001"/>
+  <testcase name="containsManyTest" classname="SetimplementationTest.HashMapsTest" time="0.002"/>
+  <testcase name="addManyTests" classname="SetimplementationTest.HashMapsTest" time="0.002"/>
+  <testcase name="toArrayManyElementsTest" classname="SetimplementationTest.HashMapsTest" time="0.004"/>
+  <testcase name="removeFromManyTest" classname="SetimplementationTest.HashMapsTest" time="0.002"/>
+  <testcase name="addOneTest" classname="SetimplementationTest.HashMapsTest" time="0.001"/>
+  <testcase name="removeFromOneTest" classname="SetimplementationTest.HashMapsTest" time="0.003"/>
+</testsuite>

@@ -1,0 +1,10 @@
+-------------------------------------------------------------------------------
+Test set: MapImplementationTest.HasMapTest
+-------------------------------------------------------------------------------
+Tests run: 7, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.011 s <<< FAILURE! - in MapImplementationTest.HasMapTest
+getOne  Time elapsed: 0.002 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <25> but was: <null>
+
+getFromMany  Time elapsed: 0 s  <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <70.03> but was: <null>
+
