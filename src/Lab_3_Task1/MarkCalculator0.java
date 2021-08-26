@@ -1,5 +1,6 @@
+package Lab_3_Task1;
 
-public class MarkCalculator3 implements MarkCalculator {
+public class MarkCalculator0 implements MarkCalculator {
 
 	public MarkGrade calculateMark(int lab, int assignment1, int assignment2,
 			int finalExam, boolean attendedFinal, boolean allRedeemableOnFinal)
@@ -12,11 +13,12 @@ public class MarkCalculator3 implements MarkCalculator {
 		if (!attendedFinal)
 			return new MarkGrade(null, Grade.NCN);
 
-		int raw = (int) Math.round(( (assignment1/10.0f) * 15.0f + (assignment2/10.0f) * 15.0f + (lab/10.0f) * 10.0f + (finalExam/100.0f) * 60.0f) );
+		int raw = (int) Math.round(((assignment1 / 10.0f) * 0.15f + (assignment2 / 10.0f)
+						* 0.15f + (lab / 10.0f) * 0.1f + (finalExam / 100.0f) * 0.6f) * 100.0f);
 
 		if (allRedeemableOnFinal)
 			raw = Math.max(raw, finalExam);
-		
+
 		if (raw < 45)
 			return new MarkGrade(raw, Grade.N);
 		else if (raw < 50)
@@ -28,6 +30,6 @@ public class MarkCalculator3 implements MarkCalculator {
 		else if (raw < 80)
 			return new MarkGrade(raw, Grade.D);
 		else
-			return new MarkGrade(raw, Grade.D);
+			return new MarkGrade(raw, Grade.HD);
 	}
 }

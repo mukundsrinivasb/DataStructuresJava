@@ -1,3 +1,5 @@
+package Lab_3_Task1;
+
 /**
  * The following is a custom exception to represent when an assessable material's provided grade is outside its possible range.
  */

@@ -1,3 +1,5 @@
+package Lab_3_Task1;
+
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
@@ -60,7 +62,22 @@ public class MarkCalculatorTest {
 		assertEquals(new MarkGrade(0, Grade.N), this.calculator.calculateMark(0, 0, 0, 0, true, false));
 	}
 
-	//TODO: write other test cases
+	@Test(timeout = 1000)
+	public void testGradeHDHigherExtreme() throws ComponentOutOfRangeException{
+		assertEquals(new MarkGrade(100,Grade.HD),this.calculator.calculateMark(10,10,10,100,true,false));
+		assertEquals(new MarkGrade(100,Grade.HD),this.calculator.calculateMark(10,10,10,100,true,true));
+	}
+	@Test(timeout = 1000)
+	public void testGradeHDLowerExtreme() throws ComponentOutOfRangeException{
+		assertEquals(new MarkGrade(81,Grade.HD),this.calculator.calculateMark(9,10,8,75,true,true));
+		assertEquals(new MarkGrade(80,Grade.HD),this.calculator.calculateMark(7,7,7,80,true,false));
+	}
+
+	@Test(timeout = 1000)
+	public void testGradePXLowerExtreme() throws ComponentOutOfRangeException{
+		assertEquals(new MarkGrade(81,Grade.HD),this.calculator.calculateMark(9,10,8,75,true,true));
+		assertEquals(new MarkGrade(80,Grade.HD),this.calculator.calculateMark(7,7,7,80,true,false));
+	}
 
 	// ########## YOUR CODE ENDS HERE ##########
 }

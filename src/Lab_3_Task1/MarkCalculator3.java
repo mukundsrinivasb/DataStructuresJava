@@ -1,7 +1,9 @@
-public class MarkCalculator8 implements MarkCalculator {
+package Lab_3_Task1;
+
+public class MarkCalculator3 implements MarkCalculator {
 
 	public MarkGrade calculateMark(int lab, int assignment1, int assignment2,
-								   int finalExam, boolean attendedFinal, boolean allRedeemableOnFinal)
+			int finalExam, boolean attendedFinal, boolean allRedeemableOnFinal)
 			throws ComponentOutOfRangeException {
 
 		if (!(0 <= lab && lab <= 10 && 0 <= assignment1 && assignment1 <= 10
@@ -15,18 +17,18 @@ public class MarkCalculator8 implements MarkCalculator {
 
 		if (allRedeemableOnFinal)
 			raw = Math.max(raw, finalExam);
-
-		if (raw <= 45)
+		
+		if (raw < 45)
 			return new MarkGrade(raw, Grade.N);
-		else if (raw <= 50)
+		else if (raw < 50)
 			return new MarkGrade(raw, Grade.PX);
-		else if (raw <= 60)
+		else if (raw < 60)
 			return new MarkGrade(raw, Grade.P);
-		else if (raw <= 70)
+		else if (raw < 70)
 			return new MarkGrade(raw, Grade.C);
-		else if (raw <= 80)
+		else if (raw < 80)
 			return new MarkGrade(raw, Grade.D);
 		else
-			return new MarkGrade(raw, Grade.HD);
+			return new MarkGrade(raw, Grade.D);
 	}
 }
