@@ -50,34 +50,95 @@ public class MarkCalculatorTest {
 	 */
 	// ########## YOUR CODE STARTS HERE ##########
 	
-	/* EXAMPLE Test case 1 */
 	@Test(timeout = 1000, expected = ComponentOutOfRangeException.class)
 	public void testException() throws ComponentOutOfRangeException {
-		this.calculator.calculateMark(-1, 0, 0, 0, true, false);
+		this.calculator.calculateMark(-1, 5, -1, -1, true, false);
+		this.calculator.calculateMark(1,11,11,50,true,true);
+		this.calculator.calculateMark(1,16,16,50,true,true);
 	}
 
-	/* EXAMPLE Test case 2 */
-	@Test(timeout = 1000)
-	public void testGradeN() throws ComponentOutOfRangeException {
-		assertEquals(new MarkGrade(0, Grade.N), this.calculator.calculateMark(0, 0, 0, 0, true, false));
+	@Test(timeout = 1000, expected = ComponentOutOfRangeException.class)
+	public void testRudimentaryLimits() throws ComponentOutOfRangeException {
+		this.calculator.calculateMark(11, 11, 11, 101, true, true);
 	}
 
 	@Test(timeout = 1000)
-	public void testGradeHDHigherExtreme() throws ComponentOutOfRangeException{
-		assertEquals(new MarkGrade(100,Grade.HD),this.calculator.calculateMark(10,10,10,100,true,false));
-		assertEquals(new MarkGrade(100,Grade.HD),this.calculator.calculateMark(10,10,10,100,true,true));
-	}
-	@Test(timeout = 1000)
-	public void testGradeHDLowerExtreme() throws ComponentOutOfRangeException{
+	public void testGradeHD() throws ComponentOutOfRangeException{
+		//final exam marks > weighted marks
 		assertEquals(new MarkGrade(81,Grade.HD),this.calculator.calculateMark(9,10,8,75,true,true));
-		assertEquals(new MarkGrade(80,Grade.HD),this.calculator.calculateMark(7,7,7,80,true,false));
+		assertEquals(new MarkGrade(100,Grade.HD),this.calculator.calculateMark(8,4,4,100,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(95,Grade.HD),this.calculator.calculateMark(10,10,10,92,true,true));
+		assertEquals(new MarkGrade(86,Grade.HD),this.calculator.calculateMark(8,10,10,80,true,true));
+		//spill over from D
+
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(85,Grade.HD),this.calculator.calculateMark(8,10,10,79,true,true));
+
+	}
+
+
+	@Test(timeout = 1000)
+	public void testGradeD() throws ComponentOutOfRangeException{
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(75,Grade.D),this.calculator.calculateMark(4,8,6,75,true,true));
+		assertEquals(new MarkGrade(70,Grade.D),this.calculator.calculateMark(4,8,6,75,true,false));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(76,Grade.D),this.calculator.calculateMark(10,6,8,75,true,true));
 	}
 
 	@Test(timeout = 1000)
-	public void testGradePXLowerExtreme() throws ComponentOutOfRangeException{
-		assertEquals(new MarkGrade(81,Grade.HD),this.calculator.calculateMark(9,10,8,75,true,true));
-		assertEquals(new MarkGrade(80,Grade.HD),this.calculator.calculateMark(7,7,7,80,true,false));
+	public void testGradeC() throws ComponentOutOfRangeException{
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(65,Grade.C),this.calculator.calculateMark(6,4,6,65,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(69,Grade.C),this.calculator.calculateMark(6,10,8,60,true,true));
 	}
+
+	@Test(timeout = 1000)
+	public void testGradeP() throws ComponentOutOfRangeException{
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(55,Grade.P),this.calculator.calculateMark(8,4,2,55,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(50,Grade.P),this.calculator.calculateMark(5,6,6,45,true,true));
+		//spill over from PX
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(50,Grade.P),this.calculator.calculateMark(4,8,2,50,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(59,Grade.P),this.calculator.calculateMark(8,8,8,45,true,true));
+
+	}
+
+	@Test(timeout = 1000)
+	public void testGradePX() throws ComponentOutOfRangeException{
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(45,Grade.PX),this.calculator.calculateMark(1,4,4,45,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(48,Grade.PX),this.calculator.calculateMark(9,2,6,45,true,true));
+		//Spill over from N
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(45,Grade.PX),this.calculator.calculateMark(2,6,4,45,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(49,Grade.PX),this.calculator.calculateMark(0,0,0,49,true,true));
+	}
+
+	@Test(timeout = 1000)
+	public void testGradeN() throws ComponentOutOfRangeException{
+		//final exam marks > weighted marks
+		assertEquals(new MarkGrade(40,Grade.N),this.calculator.calculateMark(3,2,2,40,true,true));
+		assertEquals(new MarkGrade(25,Grade.N),this.calculator.calculateMark(2,2,0,25,true,true));
+		assertEquals(new MarkGrade(40,Grade.N),this.calculator.calculateMark(0,0,0,40,true,true));
+		//final exam marks < weighted marks
+		assertEquals(new MarkGrade(25,Grade.N),this.calculator.calculateMark(7,2,2,20,true,true));
+		assertEquals(new MarkGrade(45,Grade.N),this.calculator.calculateMark(5,6,4,40,true,false));
+	}
+
+	@Test(timeout = 1000)
+	public void testGradeNCN() throws ComponentOutOfRangeException{
+		//Unattended final exam
+		assertEquals(new MarkGrade(null,Grade.NCN),this.calculator.calculateMark(3,2,2,0,false,true));
+	}
+
 
 	// ########## YOUR CODE ENDS HERE ##########
 }
