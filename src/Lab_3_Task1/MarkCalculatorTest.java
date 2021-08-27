@@ -50,16 +50,14 @@ public class MarkCalculatorTest {
 	 */
 	// ########## YOUR CODE STARTS HERE ##########
 	
-	@Test(timeout = 1000, expected = ComponentOutOfRangeException.class)
-	public void testException() throws ComponentOutOfRangeException {
-		this.calculator.calculateMark(-1, 5, -1, -1, true, false);
-		this.calculator.calculateMark(1,11,11,50,true,true);
-		this.calculator.calculateMark(1,16,16,50,true,true);
+	@Test(timeout = 1000,expected = ComponentOutOfRangeException.class)
+	public void testException() throws ComponentOutOfRangeException  {
+		this.calculator.calculateMark(12,12,12,101,true,true);
 	}
 
 	@Test(timeout = 1000, expected = ComponentOutOfRangeException.class)
 	public void testRudimentaryLimits() throws ComponentOutOfRangeException {
-		this.calculator.calculateMark(11, 11, 11, 101, true, true);
+		this.calculator.calculateMark(10, 11, 11, 100, true, true);
 	}
 
 	@Test(timeout = 1000)
