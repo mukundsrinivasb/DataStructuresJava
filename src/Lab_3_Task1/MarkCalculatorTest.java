@@ -128,9 +128,10 @@ public class MarkCalculatorTest {
 		assertEquals(new MarkGrade(40,Grade.N),this.calculator.calculateMark(3,2,2,40,true,true));
 		assertEquals(new MarkGrade(25,Grade.N),this.calculator.calculateMark(2,2,0,25,true,true));
 		assertEquals(new MarkGrade(40,Grade.N),this.calculator.calculateMark(0,0,0,40,true,true));
+		//assertEquals(new MarkGrade(24,Grade.N),this.calculator.calculateMark(0,0,0,40,true,false));
 		//final exam marks < weighted marks
 		assertEquals(new MarkGrade(25,Grade.N),this.calculator.calculateMark(7,2,2,20,true,true));
-		assertEquals(new MarkGrade(45,Grade.N),this.calculator.calculateMark(5,6,4,40,true,false));
+		assertEquals(new MarkGrade(45,Grade.PX),this.calculator.calculateMark(6,6,4,40,true,false));
 	}
 
 	@Test(timeout = 1000)
