@@ -134,7 +134,7 @@ public abstract class Tree<T extends Comparable<T>> {
 		// Add current node's value
 		list.add(tree.value);
 
-        // Recurse through left subtree.
+        // Recurse through right subtree.
 		if (tree.rightNode.value != null) {
 			list.addAll(treeToListInOrder(tree.rightNode));
 		}
