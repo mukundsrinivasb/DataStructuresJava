@@ -10,5 +10,7 @@ public class UnderstandingTrees {
             FirstTree = FirstTree.insert(insertVal);
         }
         System.out.print(FirstTree.display());
+        System.out.println(System.lineSeparator() + "The balance Factor of the tree is : ");
+        System.out.println(FirstTree.getBalanceFactor());
     }
 }

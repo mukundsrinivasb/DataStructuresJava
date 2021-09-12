@@ -147,22 +147,22 @@ public abstract class Tree<T extends Comparable<T>> {
     /**
      * Return balance factor
      */
-    public int getBalanceFactor() {
-        if (rightNode.getHeight() - leftNode.getHeight() > 1 || rightNode.getHeight() - leftNode.getHeight() < -1) {
-            return rightNode.getHeight() - leftNode.getHeight();
-        } else {
-            if (rightNode instanceof EmptyTree && leftNode instanceof EmptyTree) {
-                return 0;
-            } else {
-                if (!(rightNode instanceof EmptyTree) && (leftNode instanceof EmptyTree)) {
-                    return rightNode.getBalanceFactor();
-                } else {
-                    return leftNode.getBalanceFactor();
-                }
-            }
-
-        }
-
-
-    }
+//    public int getBalanceFactor() {
+//        if (rightNode.getHeight() - leftNode.getHeight() > 1 || rightNode.getHeight() - leftNode.getHeight() < -1) {
+//            return rightNode.getHeight() - leftNode.getHeight();
+//        } else {
+//            if (rightNode instanceof EmptyTree && leftNode instanceof EmptyTree) {
+//                return 0;
+//            } else {
+//                if (!(rightNode instanceof EmptyTree) && (leftNode instanceof EmptyTree)) {
+//                    return rightNode.getBalanceFactor();
+//                } else {
+//                    return leftNode.getBalanceFactor();
+//                }
+//            }
+//
+//        }
+//
+//
+//    }
 }
