@@ -57,19 +57,14 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             E.g. what 'insert' does is described in Lab_04_DataStructure.Tree.java.
          */
 
+        Tree InTree = (BinarySearchTree)this;
         // Ensure input is not null.
         if (element == null)
             throw new IllegalArgumentException("Input cannot be null");
 
-        if (element.compareTo(value) > 0) {
-            // COMPLETE
-        } else if (element.compareTo(value) < 0) {
-            // COMPLETE
-        } else {
-            // COMPLETE
-        }
+        InTree = InTree.insert(value);
+        return (AVLTree<T>) InTree;
 
-        return this; // Change to return something different
     }
 
     /**
@@ -138,4 +133,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             return new AVLTree<T>(element);
         }
     }
+
+
 }

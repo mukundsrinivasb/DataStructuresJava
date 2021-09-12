@@ -67,6 +67,7 @@ public abstract class Tree<T extends Comparable<T>> {
 
     /**
      * Height of current node.
+     *
      * @return The maximum height of either children.
      */
     public int getHeight() {
@@ -112,33 +113,56 @@ public abstract class Tree<T extends Comparable<T>> {
     }
 
     /**
-      * List the elements of the tree with in-order
-      */
+     * List the elements of the tree with in-order
+     */
     public List<T> inOrder() {
-		return this.treeToListInOrder(this);
-	}
+        return this.treeToListInOrder(this);
+    }
 
     /**
      * Converts tree to list in-order. Helper method of inOrder.
+     *
      * @param tree to convert to list.
      * @return in-order list of tree values.
      */
-	private List<T> treeToListInOrder(Tree<T> tree) {
-		List<T> list = new LinkedList<>();
+    private List<T> treeToListInOrder(Tree<T> tree) {
+        List<T> list = new LinkedList<>();
 
-		// Recurse through left subtree.
-		if (tree.leftNode.value != null) {
-			list.addAll(treeToListInOrder(tree.leftNode));
-		}
+        // Recurse through left subtree.
+        if (tree.leftNode.value != null) {
+            list.addAll(treeToListInOrder(tree.leftNode));
+        }
 
-		// Add current node's value
-		list.add(tree.value);
+        // Add current node's value
+        list.add(tree.value);
 
         // Recurse through right subtree.
-		if (tree.rightNode.value != null) {
-			list.addAll(treeToListInOrder(tree.rightNode));
-		}
+        if (tree.rightNode.value != null) {
+            list.addAll(treeToListInOrder(tree.rightNode));
+        }
 
-		return list;
-	}
+        return list;
+    }
+
+    /**
+     * Return balance factor
+     */
+    public int getBalanceFactor() {
+        if (rightNode.getHeight() - leftNode.getHeight() > 1 || rightNode.getHeight() - leftNode.getHeight() < -1) {
+            return rightNode.getHeight() - leftNode.getHeight();
+        } else {
+            if (rightNode instanceof EmptyTree && leftNode instanceof EmptyTree) {
+                return 0;
+            } else {
+                if (!(rightNode instanceof EmptyTree) && (leftNode instanceof EmptyTree)) {
+                    return rightNode.getBalanceFactor();
+                } else {
+                    return leftNode.getBalanceFactor();
+                }
+            }
+
+        }
+
+
+    }
 }
