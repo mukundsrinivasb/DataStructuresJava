@@ -56,9 +56,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             Note that what each method does is described in its superclass unless edited.
             E.g. what 'insert' does is described in Lab_04_DataStructure.Tree.java.
          */
-        Tree inTree = new BinarySearchTree(this.value, this.leftNode, this.rightNode);
-        inTree = inTree.insert(element);
-        return new AVLTree(inTree.value, inTree.leftNode, inTree.rightNode);
+        BinarySearchTree tTree = (BinarySearchTree)this.insert(element);
+        return (AVLTree<T>) tTree;
+
+
+
     }
 
     /**
