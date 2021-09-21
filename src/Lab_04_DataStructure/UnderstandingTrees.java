@@ -4,8 +4,8 @@ import java.util.Random;
 
 public class UnderstandingTrees {
     public static void main(String[] args) {
-        var FirstTree = new AVLTree(25);
-        int[] insertVal = {30,38};
+        var FirstTree = new AVLTree(40);
+        int[] insertVal = {38,50,45,55,60};
         for (int v : insertVal) {
             FirstTree = FirstTree.insert(v);
         }

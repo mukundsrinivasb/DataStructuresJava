@@ -60,7 +60,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         insertTree = insertTree.insert(element);
         AVLTree insertedTree = new AVLTree(insertTree.value, insertTree.leftNode, insertTree.rightNode);
         if (insertedTree.getBalanceFactor() > 1 || insertedTree.getBalanceFactor() < -1) {
-            if (!(insertedTree.rightNode.rightNode instanceof EmptyTree)) {
+            if (!(insertedTree.rightNode.rightNode instanceof EmptyAVL)) {
                 insertedTree = insertedTree.leftRotate();
             }
         }
