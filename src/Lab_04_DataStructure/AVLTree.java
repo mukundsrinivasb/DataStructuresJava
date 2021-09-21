@@ -90,12 +90,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             (Lab_04_DataStructure.AVLTree$EmptyAVL and Lab_04_DataStructure.AVLTree are in unnamed module of loader 'app')'
             than something about your code is incorrect!
          */
-
         T newParentVal = this.rightNode.value;
         Tree<T> newLeft = new AVLTree(this.value, this.leftNode, this.rightNode.leftNode);
-        Tree<T> newRight = new AVLTree(this.rightNode.rightNode.value);
-        return new AVLTree(newParentVal, newLeft, newRight);
+        Tree<T> newRight = this.rightNode.rightNode;
 
+        return new AVLTree(newParentVal, newLeft, newRight);
 
     }
 
@@ -138,6 +137,5 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             return new AVLTree<T>(element);
         }
     }
-
 
 }
