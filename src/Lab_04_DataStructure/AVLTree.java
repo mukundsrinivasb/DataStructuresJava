@@ -56,9 +56,15 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             Note that what each method does is described in its superclass unless edited.
             E.g. what 'insert' does is described in Lab_04_DataStructure.Tree.java.
          */
-        BinarySearchTree tTree = (BinarySearchTree)this.insert(element);
-        return (AVLTree<T>) tTree;
-
+        BinarySearchTree insertTree = new BinarySearchTree(this.value,this.leftNode,this.rightNode);
+        insertTree = insertTree.insert(element);
+        AVLTree insertedTree = new AVLTree(insertTree.value, insertTree.leftNode, insertTree.rightNode);
+        if (insertedTree.getBalanceFactor() > 1 || insertedTree.getBalanceFactor() < -1) {
+            if (!(insertedTree.rightNode.rightNode instanceof EmptyTree)) {
+                insertedTree = insertedTree.leftRotate();
+            }
+        }
+        return insertedTree;
 
 
     }
@@ -85,10 +91,11 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             than something about your code is incorrect!
          */
 
-        Tree<T> newParent = this.rightNode;
-        Tree<T> newRightOfCurrent = newParent.rightNode;
-        Tree<T> newLeftOfCurrent = new BinarySearchTree(this.value);
-        return new AVLTree(newParent.value,newLeftOfCurrent,newRightOfCurrent);
+        T newParentVal = this.rightNode.value;
+        Tree<T> newLeft = new AVLTree(this.value, this.leftNode, this.rightNode.leftNode);
+        Tree<T> newRight = new AVLTree(this.rightNode.rightNode.value);
+        return new AVLTree(newParentVal, newLeft, newRight);
+
 
     }
 
@@ -113,12 +120,10 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             (Lab_04_DataStructure.AVLTree$EmptyAVL and Lab_04_DataStructure.AVLTree are in unnamed module of loader 'app')'
             than something about your code is incorrect!
          */
-        //if(this.getBalanceFactor()<-2)
-
-        Tree<T> newParent = this.leftNode;
-        Tree<T> newRightofCurrent = new BinarySearchTree(this.value);
-        Tree<T> newLeftofCurrent = newParent.leftNode;
-        return new AVLTree(newParent.value,newLeftofCurrent,newRightofCurrent);
+        T newParentVal = this.leftNode.value;
+        Tree<T> newRight = new AVLTree(this.value,this.leftNode.rightNode,this.rightNode);
+        Tree<T> newLeft = new AVLTree(this.leftNode.leftNode.value);
+        return new AVLTree(newParentVal, newLeft, newRight);
     }
 
     /**
