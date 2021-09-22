@@ -56,15 +56,21 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             Note that what each method does is described in its superclass unless edited.
             E.g. what 'insert' does is described in Lab_04_DataStructure.Tree.java.
          */
-        BinarySearchTree insertTree = new BinarySearchTree(this.value,this.leftNode,this.rightNode);
-        insertTree = insertTree.insert(element);
-        AVLTree insertedTree = new AVLTree(insertTree.value, insertTree.leftNode, insertTree.rightNode);
-        if (insertedTree.getBalanceFactor() > 1 || insertedTree.getBalanceFactor() < -1) {
-            if (!(insertedTree.rightNode.rightNode instanceof EmptyAVL)) {
-                insertedTree = insertedTree.leftRotate();
+        if (this.find(element) == this) {
+            return this;
+        } else {
+            BinarySearchTree insertTree = new BinarySearchTree(this.value, this.leftNode, this.rightNode);
+            insertTree = insertTree.insert(element);
+            AVLTree insertedTree = new AVLTree(insertTree.value, insertTree.leftNode, insertTree.rightNode);
+            if (insertedTree.getBalanceFactor() > 1 || insertedTree.getBalanceFactor() < -1) {
+                if (insertedTree.rightNode.rightNode instanceof AVLTree) {
+                    insertedTree = insertedTree.leftRotate();
+                } else if (insertedTree.leftNode.leftNode instanceof AVLTree) {
+                    insertedTree = insertedTree.rightRotate();
+                }
             }
+            return insertedTree;
         }
-        return insertedTree;
 
 
     }
@@ -93,7 +99,7 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         T newParentVal = this.rightNode.value;
         Tree<T> newLeft = new AVLTree(this.value, this.leftNode, this.rightNode.leftNode);
         Tree<T> newRight = this.rightNode.rightNode;
-
+//        System.out.println("left Rotated now ");
         return new AVLTree(newParentVal, newLeft, newRight);
 
     }
@@ -120,8 +126,9 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             than something about your code is incorrect!
          */
         T newParentVal = this.leftNode.value;
-        Tree<T> newRight = new AVLTree(this.value,this.leftNode.rightNode,this.rightNode);
-        Tree<T> newLeft = new AVLTree(this.leftNode.leftNode.value);
+        Tree<T> newRight = new AVLTree(this.value, this.leftNode.rightNode, this.rightNode);
+        Tree<T> newLeft = this.leftNode.leftNode;
+//        System.out.println("right Rotated now ");
         return new AVLTree(newParentVal, newLeft, newRight);
     }
 
