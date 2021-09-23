@@ -56,24 +56,45 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             Note that what each method does is described in its superclass unless edited.
             E.g. what 'insert' does is described in Lab_04_DataStructure.Tree.java.
          */
+
+        BinarySearchTree inTree = new BinarySearchTree(this.value,this.leftNode,this.rightNode);
+//        System.out.println(inTree.display() + " Before Insertion");
+        inTree = inTree.insert(element);
+//        System.out.println(inTree.display() + " After Insertion");
+        AVLTree inAVL = new AVLTree(inTree.value, inTree.leftNode, inTree.rightNode);
         if (this.find(element) == this) {
             return this;
         } else {
-            BinarySearchTree insertTree = new BinarySearchTree(this.value, this.leftNode, this.rightNode);
-            insertTree = insertTree.insert(element);
-            AVLTree insertedTree = new AVLTree(insertTree.value, insertTree.leftNode, insertTree.rightNode);
-            if (insertedTree.getBalanceFactor() > 1 || insertedTree.getBalanceFactor() < -1) {
-                if (insertedTree.rightNode.rightNode instanceof AVLTree) {
-                    insertedTree = insertedTree.leftRotate();
-                } else if (insertedTree.leftNode.leftNode instanceof AVLTree) {
-                    insertedTree = insertedTree.rightRotate();
+
+            if (inAVL.getBalanceFactor() < -1) {
+                if (element.compareTo(this.rightNode.value) > 0) {
+                    System.out.println(System.lineSeparator() + "Single left Rotation");
+                    return inAVL.leftRotate();
+                } else  {
+                    System.out.println(System.lineSeparator() + " Double left Rotation");
+                    AVLTree newRight = new AVLTree(inAVL.rightNode.leftNode.value);
+                    newRight.leftNode = inAVL.rightNode.leftNode.leftNode;
+                    newRight.rightNode = new AVLTree(inAVL.rightNode.value, inAVL.rightNode.leftNode.rightNode, inAVL.rightNode.rightNode);
+                    AVLTree newUnbalanced = new AVLTree(inAVL.value, inAVL.leftNode, newRight);
+                    return newUnbalanced.leftRotate();
                 }
+            } else if (inAVL.getBalanceFactor() > 1) {
+                if (element.compareTo(this.leftNode.value) < 0) {
+                    System.out.println(System.lineSeparator() + "Single right Rotation");
+                    return inAVL.rightRotate();
+                } else {
+                    System.out.println(System.lineSeparator() + " Double Right Rotation");
+                    AVLTree newLeft = new AVLTree(inAVL.leftNode.rightNode.value);
+                    newLeft.leftNode = new AVLTree(inAVL.leftNode.value, inAVL.leftNode.leftNode, inAVL.leftNode.rightNode.leftNode);
+                    AVLTree newUnbalanced = new AVLTree(inAVL.value, newLeft, inAVL.rightNode);
+                    return newUnbalanced.rightRotate();
+                }
+            } else {
+                return inAVL;
             }
-            return insertedTree;
         }
-
-
     }
+
 
     /**
      * Conducts a left rotation on the current node.
@@ -96,10 +117,10 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
             (Lab_04_DataStructure.AVLTree$EmptyAVL and Lab_04_DataStructure.AVLTree are in unnamed module of loader 'app')'
             than something about your code is incorrect!
          */
+
         T newParentVal = this.rightNode.value;
         Tree<T> newLeft = new AVLTree(this.value, this.leftNode, this.rightNode.leftNode);
         Tree<T> newRight = this.rightNode.rightNode;
-//        System.out.println("left Rotated now ");
         return new AVLTree(newParentVal, newLeft, newRight);
 
     }
@@ -128,7 +149,6 @@ public class AVLTree<T extends Comparable<T>> extends BinarySearchTree<T> {
         T newParentVal = this.leftNode.value;
         Tree<T> newRight = new AVLTree(this.value, this.leftNode.rightNode, this.rightNode);
         Tree<T> newLeft = this.leftNode.leftNode;
-//        System.out.println("right Rotated now ");
         return new AVLTree(newParentVal, newLeft, newRight);
     }
 
